@@ -1,0 +1,10 @@
+{
+  "name": "domain-check",
+  "version": "0.0.0",
+  "description": "A module and command line tool for checking a domain's availability.",
+  "author": "Jamen Marz",
+  "main": "index.js",
+  "bin": {
+    "d": "index.js"
+  }
+}
