@@ -61,8 +61,9 @@ This module is a function, with an additional synchronous method...
 
 Using it in a script:
 ```javascript
-// Asynchronous
 const d = require('domain-check');
+
+// Asynchronous
 d.check('example.com', 'google.com', 'someavailabledomain.com', function(err, domains){
   let status;
   for (let hostname of domains) {
