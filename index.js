@@ -4,4 +4,3 @@ if (process.stdout.isTTY) {
 } else {
   // Being used as a module.
 }
-console.log("Haha");
