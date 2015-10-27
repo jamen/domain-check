@@ -5,6 +5,7 @@
   "author": "Jamen Marz",
   "main": "node index.js",
   "bin": {
+    "domain-check": "index.js",
     "c": "index.js"
   },
   "scripts": {
