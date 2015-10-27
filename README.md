@@ -5,7 +5,7 @@ Check the availability of a domain or multiple through the command line tool or 
 To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.
 
 #### CLI
-`domain-check`'s command is simply `domain-check` however you can use `d` for short.  The CLI portion reads from both the arguments provided, and the `process.stdin`.  It iterates through all the inputs and parses them with the native `url` module for flexible input.  See the `c --help` print if you want more information.
+`domain-check`'s command is simply `domain-check` however you can use `c` for short.  The CLI portion reads from both the arguments provided, and the `process.stdin`.  It iterates through all the inputs and parses them with the native `url` module for flexible input.  See the `c --help` print if you want more information.
 
 ```
 $ c example.com, google.com, someavailabledomain.com
