@@ -5,7 +5,7 @@ Check the availability of a domain or multiple through the command line tool or 
 To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.
 
 #### CLI
-`domain-check`'s command is simply `domain-check` however you can use `d` for short.  The CLI portion reads from both the arguments provided, and the `process.stdin`.  It iterates through all the inputs and parses them with the native `url` module for flexible input.  See the `c --help` print if you want more information.
+`domain-check`'s command is simply `domain-check` however you can use `c` for short.  The CLI portion reads from both the arguments provided, and the `process.stdin`.  It iterates through all the inputs and parses them with the native `url` module for flexible input.  See the `c --help` print if you want more information.
 
 ```
 $ c example.com, google.com, someavailabledomain.com
@@ -49,14 +49,14 @@ This module is a function, with an additional synchronous method...
 
 ```javascript
 /* Asynchronous */
-.check(input1, input2, ..., callback);
+Check(input1, input2, ..., callback);
 // or
-.check([input1, input2, ...], callback);
+Check([input1, input2, ...], callback);
 
 /* Synchronous*/
-.check.sync(input1, input2, ...);
+Check.sync(input1, input2, ...);
 // or
-.check.sync([input1, input2, ...]);
+Check.sync([input1, input2, ...]);
 ```
 
 Using it in a script:
@@ -64,7 +64,7 @@ Using it in a script:
 const c = require('domain-check');
 
 // Asynchronous
-c.check('example.com', 'google.com', 'someavailabledomain.com', function(err, domains){
+c('example.com', 'google.com', 'someavailabledomain.com', function(err, domains){
   let status;
   for (let hostname of domains) {
     status = domains[hostname];
@@ -73,7 +73,7 @@ c.check('example.com', 'google.com', 'someavailabledomain.com', function(err, do
 });
 
 // Synchronous
-let domains = d.check.sync('google.com', 'example.com', ...),
+let domains = c.sync('google.com', 'example.com', ...),
     status;
 for (let hostname of domains) {
   status = domains[hostname];
