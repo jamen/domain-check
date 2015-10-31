@@ -1,6 +1,6 @@
 {
   "name": "domain-check",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A module and command line tool for checking a domain's availability.",
   "author": "Jamen Marz",
   "main": "node index.js",
