@@ -26,7 +26,7 @@ Any argument that is not marked with a `-` is considered a domain and will be ch
 
 Also note that you can put multiple flags together in one group... e.g. `c -isn`
 
-You can also pipe into domain-check if you have domains listed elsewhere.  Take this example, say we have a file full of domains that we want to check, we can use `cat` to read it, and then pipe it into domain-check:
+You can also pipe into domain-check if you have domains listed elsewhere, but __you have to specify `-i`__.  Take this example, say we have a file full of domains that we want to check, we can use `cat` to read it, and then pipe it into domain-check:
 
 ```
 $ cat domain_list.txt | c -is
