@@ -24,10 +24,12 @@ The CLI has a few flags:
 
 Any argument that is not marked with a `-` is considered a domain and will be checked.
 
+Also note that you can put multiple flags together in one group... e.g. `c -isn`
+
 You can also pipe into domain-check if you have domains listed elsewhere.  Take this example, say we have a file full of domains that we want to check, we can use `cat` to read it, and then pipe it into domain-check:
 
 ```
-$ cat domain_list.txt | c -s
+$ cat domain_list.txt | c -is
 ```
 
 ### Module
