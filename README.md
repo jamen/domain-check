@@ -2,81 +2,49 @@
 Check the availability of a domain or multiple through the command line tool or as a node module...
 
 # Usage
-To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.
+To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.  The CLI tool is good if you need to check a domain's status.  The in-script module is good if you need to use it programmatically.
 
-#### CLI
-`domain-check`'s command is simply `domain-check` however you can use `c` for short.  The CLI portion reads from both the arguments provided, and the `process.stdin`.  It iterates through all the inputs and parses them with the native `url` module for flexible input.  See the `c --help` print if you want more information.
+### CLI
+The CLI has 4 flags:
 
-```
-$ c example.com, google.com, someavailabledomain.com
-example.com: taken
-google.com: taken
-someavailabledomain.com: available
-```
+ - `-f`: Read domain list from listed files.  Example: `c -f projects.txt companies.txt`
+ - `-s`: Sort the output into two sections of `taken` and `available`.
+ - `-a`: Only print available domains.
+ - `-t`: Only print taken domains.
 
-You can use the `-s` flag to sort the output.
-```
-$ c -s example.com, google.com, someavailabledomain.com
-Available:
-someavailabledomain.com
+They can be used together, for instance if you want to sort the results from a file, you can use `-fs` for `file` and `sort`.
 
-Taken:
-example.com
-google.com
-```
+Any argument that is not marked with a `-` is considered a domain and will be checked.
 
-To get only the available results, you can use the `-a` flag, alternatively to get only the taken results, you can use the `-t` flag.
-```
-$ c -a example.com, someavailabledomain.com, anotheravailable.com
-someavailable.com
-anotheravailable.com
-```
+| Usage |
+|-------|
+| `c -[f,s,a,t] <domain, domain, ...>` |
 
-You can pipe data into `d` (and combine the input with arguments) to check domains as well.
-```
-$ echo "example.com\ngoogle.com" | c
-example.com: taken
-google.com: taken
-```
-
-Pipe and arguments:
-```
-$ cat domain-list.txt | c -s example.com
-```
-
-#### Module
-This module is a function, with an additional synchronous method...
+### Module
+Simply `require` domain-check, and supply it with an array of domain names.  Then use the callback argument to see the results:
 
 ```javascript
-/* Asynchronous */
-Check(input1, input2, ..., callback);
-// or
-Check([input1, input2, ...], callback);
+const check = require('domain-check');
 
-/* Synchronous*/
-Check.sync(input1, input2, ...);
-// or
-Check.sync([input1, input2, ...]);
-```
-
-Using it in a script:
-```javascript
-const c = require('domain-check');
-
-// Asynchronous
-c('example.com', 'google.com', 'someavailabledomain.com', function(err, domains){
-  let status;
-  for (let hostname of domains) {
-    status = domains[hostname];
-    console.log(hostname + ': ' + status ? 'available' : 'taken');
-  }
+check(['example.com', 'google.com', 'foo.bar'], function(results){
+  console.log(results);
 });
+// => { 'example.com':false, 'google.com':false, 'foo.bar': true }
+```
 
-// Synchronous
-let domains = c.sync('google.com', 'example.com', ...),
-    status;
-for (let hostname of domains) {
-  status = domains[hostname];
-  console.log(hostname + ': ' + status ? 'available' : 'taken');
-}
+In the results object, `true` represents that it's available, and `false` shows that it's taken.
+
+You can use a for..in loop to get keys (domain names) if you need:
+
+```javascript
+check(['example.com', 'google.com', 'foo.bar'], function(results){
+  let available;
+  for (for domain in results) {
+    available = results[domain];
+    console.log(domain + ': ' + available);
+  };
+});
+// => example.com: false
+// => google.com: false
+// => foo.bar: true
 ```
