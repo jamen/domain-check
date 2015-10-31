@@ -8,7 +8,7 @@ To use `domain-check`, you can either use the CLI tool, or use it in-script as a
 
 | Usage |
 |-------|
-| `c -[s,a,t] <domain, domain, ...>` |
+| `c [flags] <domain, domain, ...>` |
 
 The CLI has a few flags:
 
