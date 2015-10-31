@@ -2,7 +2,7 @@
 Check the availability of a domain or multiple through the command line tool or as a node module...
 
 ```
-$ npm install domain-check
+$ npm install -g domain-check
 ```
 
 # Usage
