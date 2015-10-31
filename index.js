@@ -10,23 +10,8 @@ if (process.stdout.isTTY) {
   let cli = lib.args(process.argv),
       options = cli.options;
 
-  if (options.indexOf('file') !== -1) {
-    const fs = require('fs'),
-          path = require('path');
-
-    let files = cli.domains,
-        matcher = /,?(?:\r\n|\r|\n|\s)/,
-        domains = [];
-
-    files.forEach(function(file){
-      file = path.resolve(file);
-      try {
-        domains = domains.concat(fs.readFileSync(file).toString().split(matcher));
-      } catch (e) {}
-    });
-    if (domains[domains.length-1] === '') domains = domains.slice(0, -1);
-
-    check(domains, function(status){
+  const response = function(input){
+    check(input, function(status){
       if (options.indexOf('sort') !== -1) {
         let available = [], taken = [];
         for (let host in status) {
@@ -58,8 +43,27 @@ if (process.stdout.isTTY) {
         console.log(host + ': ' + (status[host] ? 'available' : 'taken'));
       }
     });
-  } else {
+  };
 
+  if (options.indexOf('file') !== -1) {
+    const fs = require('fs'),
+          path = require('path');
+
+    let files = cli.domains,
+        matcher = /,?(?:\r\n|\r|\n|\s)/,
+        domains = [];
+
+    files.forEach(function(file){
+      file = path.resolve(file);
+      try {
+        domains = domains.concat(fs.readFileSync(file).toString().split(matcher));
+      } catch (e) {}
+    });
+    if (domains[domains.length-1] === '') domains = domains.slice(0, -1);
+
+    response(domains);
+  } else {
+    response(cli.domains);
   }
 } else {
   // Being used as a module.
