@@ -5,20 +5,24 @@ Check the availability of a domain or multiple through the command line tool or 
 To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.  The CLI tool is good if you need to check a domain's status.  The in-script module is good if you need to use it programmatically.
 
 ### CLI
-The CLI has 4 flags:
 
- - `-f`: Read domain list from listed files.  Example: `c -f projects.txt companies.txt`
+| Usage |
+|-------|
+| `c -[s,a,t] <domain, domain, ...>` |
+
+The CLI has 3 flags:
+
  - `-s`: Sort the output into two sections of `taken` and `available`.
  - `-a`: Only print available domains.
  - `-t`: Only print taken domains.
 
-They can be used together, for instance if you want to sort the results from a file, you can use `-fs` for `file` and `sort`.
-
 Any argument that is not marked with a `-` is considered a domain and will be checked.
 
-| Usage |
-|-------|
-| `c -[f,s,a,t] <domain, domain, ...>` |
+You can also pipe into domain-check if you have domains listed elsewhere.  Take this example, say we have a file full of domains that we want to check, we can use `cat` to read it, and then pipe it into domain-check:
+
+```
+$ cat domain_list.txt | c -s
+```
 
 ### Module
 Simply `require` domain-check, and supply it with an array of domain names.  Then use the callback argument to see the results:
