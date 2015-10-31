@@ -1,6 +1,10 @@
 # domain-check
 Check the availability of a domain or multiple through the command line tool or as a node module...
 
+```
+$ npm install domain-check
+```
+
 # Usage
 To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.  The CLI tool is good if you need to check a domain's status.  The in-script module is good if you need to use it programmatically.
 
@@ -16,6 +20,7 @@ The CLI has a few flags:
  - `-a`: Only output available domains.
  - `-t`: Only output taken domains.
  - `-n`: No color.
+ - `-i`: Read from stdin stream,
 
 Any argument that is not marked with a `-` is considered a domain and will be checked.
 

@@ -11,6 +11,7 @@ if (process.stdout.isTTY) {
 
   lib.args(process.argv, function(domains, options){
     check(domains, function(status){
+
       if (options.indexOf('no color') !== -1) log.color = false;
 
       if (options.indexOf('sort') !== -1) {
@@ -23,6 +24,7 @@ if (process.stdout.isTTY) {
         console.log(available.join('\r\n'), '\r\n');
         log.status('%s', false);
         console.log(taken.join('\r\n'));
+        process.exit();
         return;
       }
 
@@ -30,6 +32,7 @@ if (process.stdout.isTTY) {
         for (let host in status) {
           if (status[host]) console.log(host);
         }
+        process.exit();
         return;
       }
 
@@ -37,15 +40,18 @@ if (process.stdout.isTTY) {
         for (let host in status) {
           if (!status[host]) console.log(host);
         }
+        process.exit();
         return;
       }
 
       for (let host in status) {
         log.status(host + ': %s', status[host]);
       }
+      process.exit();
     });
   });
 } else {
   // Being used as a module.
   module.exports = exports = check;
+  console.log('KeK!')
 }
