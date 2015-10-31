@@ -10,11 +10,12 @@ To use `domain-check`, you can either use the CLI tool, or use it in-script as a
 |-------|
 | `c -[s,a,t] <domain, domain, ...>` |
 
-The CLI has 3 flags:
+The CLI has a few flags:
 
- - `-s`: Sort the output into two sections of `taken` and `available`.
- - `-a`: Only print available domains.
- - `-t`: Only print taken domains.
+ - `-s`: Sort both `taken` and `available` into sections.
+ - `-a`: Only output available domains.
+ - `-t`: Only output taken domains.
+ - `-n`: No color.
 
 Any argument that is not marked with a `-` is considered a domain and will be checked.
 

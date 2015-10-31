@@ -2,14 +2,17 @@
 'use strict';
 
 const lib = require('./lib'),
-      check = lib.check,
-      log = lib.log;
+      check = lib.check;
+
+let log = lib.log;
 
 if (process.stdout.isTTY) {
   // Being used as CLI.
 
   lib.args(process.argv, function(domains, options){
     check(domains, function(status){
+      if (options.indexOf('no color') !== -1) log.color = false;
+
       if (options.indexOf('sort') !== -1) {
         let available = [], taken = [];
         for (let host in status) {
