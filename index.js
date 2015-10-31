@@ -2,7 +2,8 @@
 'use strict';
 
 const lib = require('./lib'),
-      check = lib.check;
+      check = lib.check,
+      log = lib.log;
 
 if (process.stdout.isTTY) {
   // Being used as CLI.
@@ -15,9 +16,9 @@ if (process.stdout.isTTY) {
           if (status[host]) available.push(host);
           else taken.push(host);
         }
-        console.log('available:');
+        log.status('%s', true);
         console.log(available.join('\r\n'), '\r\n');
-        console.log('taken:');
+        log.status('%s', false);
         console.log(taken.join('\r\n'));
         return;
       }
@@ -37,7 +38,7 @@ if (process.stdout.isTTY) {
       }
 
       for (let host in status) {
-        console.log(host + ': ' + (status[host] ? 'available' : 'taken'));
+        log.status(host + ': %s', status[host]);
       }
     });
   });
