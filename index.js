@@ -10,8 +10,9 @@ if (process.stdout.isTTY) {
   // Being used as CLI.
 
   lib.args(process.argv, function(domains, options){
-    check(domains, function(status){
+    if (!domains.length) process.exit();
 
+    check(domains, function(status){
       if (options.indexOf('no color') !== -1) log.color = false;
 
       if (options.indexOf('sort') !== -1) {
