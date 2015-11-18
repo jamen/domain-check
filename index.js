@@ -2,7 +2,8 @@
 'use strict';
 
 const lib = require('./lib'),
-      check = lib.check;
+      check = lib.check,
+      list = lib.list;
 
 let log = lib.log;
 
@@ -11,6 +12,7 @@ if (process.stdout.isTTY) {
 
   lib.args(process.argv, function(domains, options){
     if (!domains.length) process.exit();
+    if (options.indexOf('list') !== -1) domains = list(domains);
 
     check(domains, function(status){
       if (options.indexOf('no color') !== -1) log.color = false;
@@ -54,5 +56,4 @@ if (process.stdout.isTTY) {
 } else {
   // Being used as a module.
   module.exports = exports = check;
-  console.log('KeK!')
 }
