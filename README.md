@@ -3,8 +3,6 @@
 
 **Ultimately making this library unreliable.**
 
-<br>
-
 # domain-check
 Check the availability of a domain or multiple through the command line tool or as a node module...
 
