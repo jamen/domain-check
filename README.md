@@ -1,5 +1,5 @@
 # Deprecation Notice: Unreliable
-**Note:** If the domain is registered, but has no DNS server, domain-check will show it as available.  domain-check uses DNS resolving to check whether a domain points to anywhere.  Most commonly people have their domain automatically hooked up to their registrar's DNS servers.  But in the case that it's registered but points to no where, it will show as available when it's actually taken... 
+**Note:** If the domain is registered, but has no DNS server, domain-check will show it as available (and in this instance, there is now way to differenciate if it is available or not).  domain-check uses DNS resolving to check whether a domain points to anywhere.  Most commonly people have their domain automatically hooked up to their registrar's DNS servers.  But in the case that it's registered but points to no where, it will show as available when it's actually taken... 
 
 **Ultimately making this library unreliable.**
 
