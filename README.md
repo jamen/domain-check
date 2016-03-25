@@ -1,12 +1,16 @@
+# Deprecation Notice: Unreliable
+**Note:** If the domain is registered, but has no DNS server, domain-check will show it as available.  domain-check uses DNS resolving to check whether a domain points to anywhere.  Most commonly people have their domain automatically hooked up to their registrar's DNS servers.  But in the case that it's registered but points to no where, it will show as available when it's actually taken... 
+
+**Ultimately making this library unreliable.**
+
+<br>
+
 # domain-check
 Check the availability of a domain or multiple through the command line tool or as a node module...
 
 ```
 $ npm install -g domain-check
 ```
-
-**Note:** If the domain is registered, but has no DNS server, domain-check will show it as available.  domain-check uses DNS resolving to check whether a domain points to anywhere.  Most commonly people have their domain automatically hooked up to their registrar's DNS servers.  But in the rare case that it's registered but points to no where, it will show as available when it's actually taken.
-
 # Usage
 To use `domain-check`, you can either use the CLI tool, or use it in-script as a module.  The CLI tool is good if you need to check a domain's status.  The in-script module is good if you need to use it programmatically.
 
